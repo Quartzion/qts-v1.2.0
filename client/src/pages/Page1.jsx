@@ -7,6 +7,7 @@ import TeamSection from '../components/TeamSection';
 import AboutUs from '../components/AboutUs';
 import Services from '../components/Services';
 import Blogs from '../components/Blogs';
+import ConnectWithUs from '../components/ConnectWithUs';
 
 export default function Page1() {
 
@@ -70,6 +71,7 @@ export default function Page1() {
                 <AboutUs />
                 <Services />
                 <Blogs />
+                <ConnectWithUs />
             </main>
             <Outlet />
         </>
