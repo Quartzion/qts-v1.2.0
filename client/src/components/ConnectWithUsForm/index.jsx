@@ -7,8 +7,8 @@ const connectWithUsFormFields = [
     {label: "Your Email", name:"email", type:"email", required: "true", placeholder: "email", autoComplete: "on" },
     {label: "Your Pnone Number", name: "phone", type: "tel", required: "true", placeholder: "e.g. (555) 123-4567", autoComplete: "tel"},
     {label: "Your Budget", name: "budget", type:"number", min: "0", required:"false", autoComplete:"false"},
-    {label: "What Priority is your technology need", name:"priority", type:"text", palceholder:"e.g High / Medium / Low", required: "false", autoComplete: "off"},
-    {label: "Additional Notes for The engineers", name:"notes", type: "textarea", required: "false", autoComplete:"off"}
+    {label: "Additional Notes for The engineers", name:"notes", type: "textarea", required: "false", autoComplete:"off"},
+    {label: "What Priority is your technology need", name:"priority", type: "radio", required:"false", options: [{label: "low"}, {label: "medium"}, {label: "high" }] }
 ]
 
 export default function ConnectWithUsForm({formClass = "Connect-with-us-form"}) {
