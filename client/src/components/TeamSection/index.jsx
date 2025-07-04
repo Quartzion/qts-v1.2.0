@@ -92,9 +92,9 @@ export default function TeamSection() {
                         </nav>
                     </div>
                     <picture>
-                        <source srcSet='./pete-ceo.webp' type='image/webp'/>
+                        <source srcSet='./pete-ceo-2.webp' type='image/webp'/>
                         <img 
-                            src='./pete-ceo.png' 
+                            src='./pete-ceo-2.png' 
                             alt='A Photo of Peter Smith standing in front of a bookcase' 
                             className='team-member-image' 
                             loading='lazy'
@@ -143,9 +143,9 @@ export default function TeamSection() {
                         </nav>
                     </div>
                     <picture>
-                        <source srcSet='./Joe.webp' type='image/webp' />
+                        <source srcSet='./Joe-president-2.webp' type='image/webp' />
                         <img 
-                            src='./Joe.jpeg' 
+                            src='./Joe-president-2.jpeg' 
                             alt='Portrait of Joseph Ruff wearing a suit' 
                             className='team-member-image' 
                             loading='lazy'
