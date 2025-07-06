@@ -1,4 +1,6 @@
 import React from 'react';
+
+import ConnectWithUs from '../ConnectWithUs';
 export default function Services() {
     return (
         <section className="services-section" role="region" aria-label="Services">
@@ -52,6 +54,8 @@ export default function Services() {
                     </div>
                 </article>
             </section>
+            <ConnectWithUs />
         </section>
+
     );
 };
