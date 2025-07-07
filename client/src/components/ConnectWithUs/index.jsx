@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Button} from "react-bootstrap"
 import ConnectWithUsForm from "../ConnectWithUsForm";
 
 export default function ConnectWithUs() {
@@ -13,7 +14,7 @@ export default function ConnectWithUs() {
                 <p>Click here to submit your request for a follow-up with Quartzion's Team</p>
             </header>
             <article>
-                <button
+                <Button
                     aria-label={expanded ? "Hide Connect with Us Form" : "Show Connect with Us Form"}
                     className="show-connect-with-us-form-button"
                     onClick={handleToggle}
@@ -21,7 +22,7 @@ export default function ConnectWithUs() {
                     aria-controls="connect-with-us-form"
                 >
                     {expanded ? "Hide follow up request form" : "Click here to submit your follow up request!"}
-                </button>
+                </Button>
                 {expanded && (
                     <div id="connect-with-us-form">
                         <ConnectWithUsForm />
