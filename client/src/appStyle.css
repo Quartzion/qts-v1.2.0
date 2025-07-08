@@ -315,6 +315,23 @@
     border-bottom-right-radius: 0;
 }
 
+.connect-with-us-form {
+    margin-top: 2%;
+    padding: 2%;
+    background-color: #555;
+    box-shadow: 0 2% 3% rgba(0, 0, 0, 0.2);
+}
+
+.connect-with-us-form-fields {
+    margin-bottom: 2rem;
+}
+
+.radio-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 /* Blogs */
 .blogs-section {
     background-color: #555;

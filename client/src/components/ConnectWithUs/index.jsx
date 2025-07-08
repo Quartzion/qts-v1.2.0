@@ -24,7 +24,7 @@ export default function ConnectWithUs() {
                     {expanded ? "Hide follow up request form" : "Click here to submit your follow up request!"}
                 </Button>
                 {expanded && (
-                    <div id="connect-with-us-form">
+                    <div className="connect-with-us-form" id="connect-with-us-form">
                         <ConnectWithUsForm />
                     </div>
                 )}

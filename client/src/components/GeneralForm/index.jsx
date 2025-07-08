@@ -28,7 +28,8 @@ export default function GeneralForm({
           {field.type === "radio" && Array.isArray(field.options) ? (
             <fieldset>
               <legend>{field.label}</legend>
-              {field.options.map((option, i) => (
+              <div className="radio-options">
+                {field.options.map((option, i) => (
                 <Form.Check
                   key={`${field.name}-${option.value || i}`}
                   type="radio"
@@ -41,6 +42,7 @@ export default function GeneralForm({
                   required={field.required && i === 0} // only first is "required"
                 />
               ))}
+              </div>
             </fieldset>
           ) : (
             <>
