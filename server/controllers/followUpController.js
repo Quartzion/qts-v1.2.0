@@ -40,4 +40,20 @@ module.exports = {
             res.status(400).json({ message: "sorry something went wrong, our engineers have been notified. Please try again later, thank you." })
         }
     },
+
+    async deleteOneFollowUpRequest(req, res) {
+        try {
+            const auth = req.headers['x-api-secret']
+            if (auth !== process.env.INTERNAL_API_SECRET) {
+                return res.status(403).json({ message: 'forbidden' })
+            }
+            const followUpRequest = await FollowUpData.findByIdAndDelete(req.body.id);
+            if (!followUpRequest) {
+                res.status(404).json({ message: "No records found with this id, please check again" })
+            }
+            res.status(200).json({ message: "THIS FOLLOW UP RECORD HAS BEEN PERMANENTLY DELETED" })
+        } catch (err) {
+            res.status(500).json({ message: "Sorry something went wrong, Our engineers have been notified. Please try again later" })
+        }
+    }
 };

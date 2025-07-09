@@ -2,11 +2,13 @@ const router = require('express').Router();
 
 const {
     createFollowUpRequest,
-    getAllFollowUpRequests 
+    getAllFollowUpRequests,
+    deleteOneFollowUpRequest
 } = require('../../controllers/followUpController');
 
 router.route('/cwu')
     .post(createFollowUpRequest)
-    .get(getAllFollowUpRequests);
+    .get(getAllFollowUpRequests)
+    .delete(deleteOneFollowUpRequest);
 
 module.exports = router;
