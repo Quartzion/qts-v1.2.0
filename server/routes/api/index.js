@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const cwuRoutes = require('./cwu-routs');
+const cwuRoutes = require('./cwu-routes');
 
-router.use('/cwu', cwuRoutes);
+router.use('/', cwuRoutes);
 
 module.exports = router;

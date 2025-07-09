@@ -27,16 +27,17 @@ app.use(express.static(buildPath, {
   }
 }));
 
-// SPA fallback for React Router
-app.get('*', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
-});
-
 app.use(routes);
 
 db.once("open", () => {
   app.listen(PORT, () => console.log(`🛸 Now listening on localhost:${PORT}`));
 });
+
+// SPA fallback for React Router
+app.get('*', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html'));
+});
+
 
 // app.listen(PORT, () => {
 //   console.log(`Server is running on http://localhost:${PORT}`);
