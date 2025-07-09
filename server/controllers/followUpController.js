@@ -12,11 +12,11 @@ module.exports = {
 
             }
             //  Success
-            res.status(200).json(followUpRequest);
+            return res.status(200).json(followUpRequest);
 
         } catch (err) {
             console.error("[ERROR] Failed to create follow-up:", err);
-            res.status(501).json({
+            return res.status(501).json({
                 message: "We're sorry, something went wrong, our engineers have been alerted please try again after some time.",
                 error: err.message
             });
@@ -35,9 +35,9 @@ module.exports = {
             if (!followUpRequests || followUpRequests.length === 0) {
                 return res.status(204).json({ message: "No Follow Up Requests At This Time" })
             }
-            res.status(200).json(followUpRequests)
+            return res.status(200).json(followUpRequests)
         } catch (err) {
-            res.status(400).json({ message: "sorry something went wrong, our engineers have been notified. Please try again later, thank you." })
+            return res.status(400).json({ message: "sorry something went wrong, our engineers have been notified. Please try again later, thank you." })
         }
     },
 
@@ -47,13 +47,30 @@ module.exports = {
             if (auth !== process.env.INTERNAL_API_SECRET) {
                 return res.status(403).json({ message: 'forbidden' })
             }
-            const followUpRequest = await FollowUpData.findByIdAndDelete(req.body.id);
+            const followUpRequest = await FollowUpData.findByIdAndDelete(req.params.id);
             if (!followUpRequest) {
-                res.status(404).json({ message: "No records found with this id, please check again" })
+                return res.status(404).json({ message: "No records found with this id, please check again" })
             }
-            res.status(200).json({ message: "THIS FOLLOW UP RECORD HAS BEEN PERMANENTLY DELETED" })
+            return res.status(200).json({ message: "THIS FOLLOW UP RECORD HAS BEEN PERMANENTLY DELETED" })
         } catch (err) {
-            res.status(500).json({ message: "Sorry something went wrong, Our engineers have been notified. Please try again later" })
+            return res.status(500).json({ message: "Sorry something went wrong, Our engineers have been notified. Please try again later" })
         }
+    },
+
+    async deleteAllFollowUpRequests(req, res) {
+        const auth = req.headers['x-api-secret']
+        if (auth !== process.env.INTERNAL_API_SECRET) {
+            return res.status(403).json({ message: 'forbidden' })
+        }
+        try {
+        const followUpRequests = await FollowUpData.deleteMany({});
+            if(!followUpRequests.deletedCount) {
+                return res.status(404).json({message: "THere are no follow up requests at this time"})
+            }
+        res.status(200).json(followUpRequests && {message: "All RECORDS DELETED"});
+        } catch (err) {
+            return res.status(500).json({message: "Sorry something went wront, our engineers have been notified. Please try again later"})
+        }
+
     }
 };

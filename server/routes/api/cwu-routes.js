@@ -3,12 +3,15 @@ const router = require('express').Router();
 const {
     createFollowUpRequest,
     getAllFollowUpRequests,
-    deleteOneFollowUpRequest
+    deleteOneFollowUpRequest,
+    deleteAllFollowUpRequests
 } = require('../../controllers/followUpController');
 
 router.route('/cwu')
     .post(createFollowUpRequest)
     .get(getAllFollowUpRequests)
-    .delete(deleteOneFollowUpRequest);
+    .delete(deleteAllFollowUpRequests);
+    
+router.route('/cwu/:id').delete(deleteOneFollowUpRequest);
 
 module.exports = router;
