@@ -5,7 +5,8 @@ const {
     getAllFollowUpRequests 
 } = require('../../controllers/followUpController');
 
-router.route('/cwu').post(createFollowUpRequest);
-router.route('/cwu').get(getAllFollowUpRequests);
+router.route('/cwu')
+    .post(createFollowUpRequest)
+    .get(getAllFollowUpRequests);
 
 module.exports = router;
