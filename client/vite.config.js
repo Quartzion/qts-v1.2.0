@@ -20,5 +20,8 @@ export default defineConfig({
     server: {
         port: vPort,
         open: true,
+        proxy: {
+            '/api': 'http://localhost:3333'
+        }
     }
 });

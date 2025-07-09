@@ -1,5 +1,8 @@
-// import { Placeholder } from 'react-bootstrap';
+import { useState } from 'react';
+
 import GeneralForm from '../GeneralForm'
+
+import { createFollowUpRequest } from '../../utils/API';
 
 const connectWithUsFormFields = [
     {label: "Your Name", name: "name", type: "text", required: true, placeholder: "Name", autoComplete: "on"},
@@ -15,12 +18,50 @@ const connectWithUsFormFields = [
 
 export default function ConnectWithUsForm({formClass = "connect-with-us-form-fields"}) {
 
+    const [cwuFormdata, setCwuFormData] = useState ({
+        name: '',
+        organization: '',
+        email: '',
+        phone: '',
+        budget: '',
+        service: '',
+        orgSize: '',
+        proirity: '',
+        notes: ''
+    })
+
+    const [validated] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setCwuFormData({...cwuFormdata, [name]: value});
+
+    }
+
+const handleFormSubmit = async (formData) => {
+    try {
+        const response = await createFollowUpRequest(formData);
+        if (!response.ok) {
+            console.log(`An issue has been encountered with the FRONT END Code`);
+            throw new Error('Sorry, something went wrong with this request. Our engineers have been notified. Please try again later');
+        }
+
+        const cwuRecord = await response.json(); // ✅ await this
+        console.log("✅ Successfully submitted:", cwuRecord);
+    } catch (err) {
+        console.error(err);
+        setShowAlert(true);
+    }
+};
+
     return(
         <article>
             <GeneralForm
                 fields={connectWithUsFormFields}
                 submitLabel='Submit'
                 formClass={formClass}
+                onSubmit={handleFormSubmit}
             >
             </GeneralForm>
         </article>
