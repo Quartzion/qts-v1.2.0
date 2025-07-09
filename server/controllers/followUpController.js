@@ -20,5 +20,17 @@ module.exports = {
             error: err.message
         });
     }
- }
+ },
+
+ async getAllFollowUpRequests (req, res) {
+    try {
+        const followUpRequests = await FollowUpData.find({});
+
+        if(!followUpRequests || followUpRequests.length === 0 ) {
+            return res.status(204).json({message: "No Follow Up Requests At This Time"})
+        }
+        res.status(200).json(followUpRequests)
+    } catch (err) {
+        res.status(400).json({message: "sorry something went wrong, our engineers have been notified. Please try again later, thank you."})}
+ },
 };

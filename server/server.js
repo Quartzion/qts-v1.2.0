@@ -37,8 +37,3 @@ db.once("open", () => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'));
 });
-
-
-// app.listen(PORT, () => {
-//   console.log(`Server is running on http://localhost:${PORT}`);
-// });
