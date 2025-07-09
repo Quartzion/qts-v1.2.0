@@ -41,7 +41,11 @@ const followUpDataSchema = new Schema(
         notes: {
             type: String,
             required: false
-        }
+        },
+
+    },
+    {
+        timestamps: true
     }
 );
 
