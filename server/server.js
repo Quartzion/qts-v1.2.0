@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const apiLimiter = require('./middleware/rateLimiter');
 const { swaggerUi, specs } = require('./swagger');
 const compression = require('compression');
 const path = require('path');
@@ -11,6 +12,9 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// rate limiter
+app.use('/api', apiLimiter);
 
 // swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));

@@ -1,4 +1,7 @@
+const express = require('express');
+const apiLimiter = require('../../middleware/rateLimiter');
 const router = require('express').Router();
+
 
 const {
     createFollowUpRequest,
@@ -8,7 +11,7 @@ const {
 } = require('../../controllers/followUpController');
 
 router.route('/cwu')
-    .post(createFollowUpRequest)
+    .post(apiLimiter, createFollowUpRequest)
     .get(getAllFollowUpRequests)
     .delete(deleteAllFollowUpRequests);
     
