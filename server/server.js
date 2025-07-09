@@ -2,9 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const compression = require('compression');
 const path = require('path');
+const db = require('./config/connection')
+const routes = require('./routes')
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Enable GZIP / Brotli compression
 app.use(compression());
@@ -27,6 +32,12 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.use(routes);
+
+db.once("open", () => {
+  app.listen(PORT, () => console.log(`🛸 Now listening on localhost:${PORT}`));
 });
+
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
