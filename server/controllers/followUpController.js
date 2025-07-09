@@ -16,7 +16,7 @@ module.exports = {
             const date = now();
             console.log(`A new follow up request has been made - id: ${followUpRequest.id} - ${date}`);
             return res.status(200).json(followUpRequest);
-            
+
 
         } catch (err) {
             console.error("[ERROR] Failed to create follow-up:", err);
@@ -26,6 +26,30 @@ module.exports = {
             });
         }
     },
+
+    /**
+ * @swagger
+ * /cwu:
+ *   get:
+ *     summary: Get all follow-up requests
+ *     description: Requires x-api-secret header. Returns all follow-up request data.
+ *     tags:
+ *       - FollowUpRequests
+ *     parameters:
+ *       - in: header
+ *         name: x-api-secret
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Internal API secret key
+ *     responses:
+ *       200:
+ *         description: A list of follow-up requests
+ *       204:
+ *         description: No data found
+ *       403:
+ *         description: Forbidden - invalid or missing secret
+ */
 
     async getAllFollowUpRequests(req, res) {
 
@@ -67,13 +91,13 @@ module.exports = {
             return res.status(403).json({ message: 'forbidden' })
         }
         try {
-        const followUpRequests = await FollowUpData.deleteMany({});
-            if(!followUpRequests.deletedCount) {
-                return res.status(404).json({message: "THere are no follow up requests at this time"})
+            const followUpRequests = await FollowUpData.deleteMany({});
+            if (!followUpRequests.deletedCount) {
+                return res.status(404).json({ message: "THere are no follow up requests at this time" })
             }
-        res.status(200).json({message: "All RECORDS DELETED"});
+            res.status(200).json({ message: "All RECORDS DELETED" });
         } catch (err) {
-            return res.status(500).json({message: "Sorry something went wront, our engineers have been notified. Please try again later"})
+            return res.status(500).json({ message: "Sorry something went wront, our engineers have been notified. Please try again later" })
         }
 
     }

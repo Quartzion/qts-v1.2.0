@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const { swaggerUi, specs } = require('./swagger');
 const compression = require('compression');
 const path = require('path');
 const db = require('./config/connection')
@@ -10,6 +11,9 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 // Enable GZIP / Brotli compression
 app.use(compression());
