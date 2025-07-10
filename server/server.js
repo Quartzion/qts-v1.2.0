@@ -9,6 +9,7 @@ const db = require('./config/connection')
 const routes = require('./routes')
 
 const PORT = process.env.PORT || 3000;
+const VITE_PORT = process.env.VITE_PORT;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -16,7 +17,7 @@ app.use(express.json());
 
 // CORS
 const allowedOrigins = [
-  `http://localhost:${PORT}`,
+  `http://localhost:${VITE_PORT}`,
   'https://quartzion.github.io'
 ];
 

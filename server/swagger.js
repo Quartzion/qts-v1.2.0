@@ -1,6 +1,15 @@
-// swagger.js
+require('dotenv').config();
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const VITE_PORT = process.env.VITE_PORT
+
+// Determine API base URL
+const isProd = process.env.NODE_ENV === 'production';
+
+// Prefer explicit env var, fallback to hardcoded defaults
+const serverUrl = isProd
+  ? process.env.SWAGGER_BASE_URL || 'https://quartzion-api.onrender.com/api'
+  : `http://localhost:${VITE_PORT}/api`;
 
 // Swagger definition
 const options = {
@@ -13,18 +22,17 @@ const options = {
     },
     servers: [
       {
-        // UPDATE FOR PROD
-        url: 'http://localhost:3333/api',
-        description: 'Local server'
-      }
+        url: serverUrl,
+        description: isProd ? 'Production server' : 'Local development server',
+      },
     ],
   },
-  apis: ['./routes/api/*.js', './controllers/*.js', './models/*.js'], 
+  apis: ['./routes/api/*.js', './controllers/*.js', './models/*.js'],
 };
 
 const specs = swaggerJsdoc(options);
 
 module.exports = {
   swaggerUi,
-  specs
+  specs,
 };
