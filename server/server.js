@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const apiLimiter = require('./middleware/rateLimiter');
+const noCache = require('./middleware/cacheControl');
 const { swaggerUi, specs } = require('./swagger');
 const compression = require('compression');
 const path = require('path');
@@ -37,9 +38,8 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'CORS is working!' });
 });
 
-
-// rate limiter
-app.use('/api', apiLimiter);
+// rate limiter + noCache
+app.use('/api', apiLimiter, noCache);
 
 // swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
