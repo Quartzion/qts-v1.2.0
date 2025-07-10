@@ -33,6 +33,11 @@ app.use(cors({
   credentials: true
 }));
 
+// wakeup ping
+app.get('/api/ping', (req, res) => {
+  res.json({ status: 'ok', message: 'API is awake' });
+});
+
 // test to check CORS
 app.get('/api/test', (req, res) => {
   res.json({ message: 'CORS is working!' });
