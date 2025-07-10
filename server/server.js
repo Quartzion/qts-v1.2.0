@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const apiLimiter = require('./middleware/rateLimiter');
 const { swaggerUi, specs } = require('./swagger');
 const compression = require('compression');
@@ -12,6 +13,29 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// CORS
+const allowedOrigins = [
+  `http://localhost:${PORT}`,
+  'https://quartzion.github.io'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
+
+// test to check CORS
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'CORS is working!' });
+});
+
 
 // rate limiter
 app.use('/api', apiLimiter);
