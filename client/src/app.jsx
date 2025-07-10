@@ -12,7 +12,7 @@ export default function App() {
     const isProd = import.meta.env.MODE === 'production'
     const API_BASE_URL = isProd
         ? import.meta.env.VITE_PROD_API_BASE_URL
-        : import.meta.env.VITE_DEV_API_BASE_URL
+        : import.meta.env.VITE_DEV_API_BASE_URL+VITE_PORT
 
     useEffect(() => {
         const wakeup = async () => {
