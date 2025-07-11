@@ -17,7 +17,6 @@ export default function App() {
     useEffect(() => {
         const wakeup = async () => {
             try {
-                // UPDATE for PROD deployment - PROD_VITE_API_BASE_URL
                 await fetch(`${API_BASE_URL}/api/ping`);
                 console.log('😃 API wakeup ping sent');
             } catch (err) {
@@ -30,9 +29,9 @@ export default function App() {
             if (document.visibilityState === 'visible') {
                 wakeup();
             }
-        }, 2 * 60 * 1000); // every 2 minutes
+        }, 2 * 60 * 1000);
 
-        return () => clearInterval(interval); // cleanup on unmount
+        return () => clearInterval(interval);
 
     }, [API_BASE_URL]);
 
