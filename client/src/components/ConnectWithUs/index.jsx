@@ -1,11 +1,31 @@
 import { useState } from "react";
-import {Button} from "react-bootstrap"
+import { Button } from "react-bootstrap";
 import ConnectWithUsForm from "../ConnectWithUsForm";
 
 export default function ConnectWithUs() {
-
     const [expanded, setExpanded] = useState(false);
-    const handleToggle = () => setExpanded((prev) => !prev);
+
+    const handleToggle = async () => {
+        const willExpand = !expanded;
+        setExpanded(willExpand);
+
+        // If user is expanding the form, send the wakeup ping
+        if (willExpand) {
+            const isProd = import.meta.env.MODE === 'production';
+            const VITE_PORT = import.meta.env.VITE_PORT;
+            const API_BASE_URL = isProd
+                ? import.meta.env.VITE_PROD_API_BASE_URL
+                : `${import.meta.env.VITE_DEV_API_BASE_URL}${VITE_PORT}`;
+
+            try {
+                await fetch(`${API_BASE_URL}/api/ping`);
+                console.log("📡 Ping sent from ConnectWithUs expansion");
+            } catch (err) {
+                console.error("❌ Ping failed from ConnectWithUs:", err);
+            }
+        }
+    };
+
 
     return (
         <section className="Connect-with-us-section" role="region" aria-label="Connect With Us today for more information">

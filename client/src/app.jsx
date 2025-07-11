@@ -29,7 +29,7 @@ export default function App() {
             if (document.visibilityState === 'visible') {
                 wakeup();
             }
-        }, 2 * 60 * 1000);
+        }, 14 * 60 * 1000);//14 min interval
 
         return () => clearInterval(interval);
 
