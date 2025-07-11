@@ -5,9 +5,10 @@ const pingLimiter = rateLimit({
   max: 1,
   standardHeaders: true,
   legacyHeaders: false,
-  handler: (req, res) => {
-    res.status(200).json({ message: "🛸 Ping already sent" });
-  }
+  message: {
+    status: 429,
+    message: "🛸 Already pinged!",
+  },
 
 });
 
