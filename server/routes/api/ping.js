@@ -1,9 +1,10 @@
 // routes/api/ping.js
 const router = require('express').Router();
+const pingLimiter = require('../../middleware/pingLimiter');
 
 const status = 'warm'
 
-router.get('/ping', (req, res) => {
+router.get('/ping', pingLimiter, (req, res) => {
   res.json({
     status: status,
     message: `API is ${status}`,
