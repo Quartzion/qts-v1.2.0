@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/api/*", "destination": "https://<YOUR-API-URL>/api/:splat" },
+    { "source": "/*",   "destination": "/index.html" }
+  ]
+}
