@@ -54,17 +54,17 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use(compression());
 
 // Serve static files with custom cache behavior
-const buildPath = path.join(__dirname, '../client/build');
-app.use(express.static(buildPath, {
-  etag: false,
-  setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'no-cache');
-    } else {
-      res.setHeader('Cache-Control', 'public, max-age=31536000');
-    }
-  }
-}));
+// const buildPath = path.join(__dirname, '../client/build');
+// app.use(express.static(buildPath, {
+//   etag: false,
+//   setHeaders: (res, filePath) => {
+//     if (filePath.endsWith('.html')) {
+//       res.setHeader('Cache-Control', 'no-cache');
+//     } else {
+//       res.setHeader('Cache-Control', 'public, max-age=31536000');
+//     }
+//   }
+// }));
 
 app.use(routes);
 
@@ -73,6 +73,6 @@ db.once("open", () => {
 });
 
 // SPA fallback for React Router
-app.get('*', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(buildPath, 'index.html'));
+// });
