@@ -1,4 +1,6 @@
 require('dotenv').config();
+const Redis = require('ioredis');
+const redis = new Redis(process.env.REDIS_URL);
 const express = require('express');
 const cors = require('cors');
 const apiLimiter = require('./middleware/rateLimiter');
@@ -21,6 +23,14 @@ const allowedOrigins = [
   `http://localhost:${VITE_PORT}`,
   'https://quartzion.github.io'
 ];
+
+async function testRedis() {
+  await redis.set("hello", "Success");
+  const val = await redis.get("hello");
+  console.log("Value from Redis:", val);
+}
+
+testRedis();
 
 app.use(cors({
   origin: function (origin, callback) {
