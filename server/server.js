@@ -1,4 +1,6 @@
 require('dotenv').config();
+const Redis = require('ioredis');
+const redis = new Redis(process.env.REDIS_URL);
 const express = require('express');
 const cors = require('cors');
 const apiLimiter = require('./middleware/rateLimiter');
@@ -15,6 +17,15 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+//Redis connection test
+async function testRedis() {
+  await redis.set("hello", "REDIS_URL Success");
+  const val = await redis.get("hello");
+  console.log("Value from Redis:", val);
+}
+
+testRedis(); 
 
 // CORS
 const allowedOrigins = [
