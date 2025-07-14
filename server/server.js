@@ -18,6 +18,15 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//Redis connection test
+async function testRedis() {
+  await redis.set("hello", "REDIS_URL Success");
+  const val = await redis.get("hello");
+  console.log("Value from Redis:", val);
+}
+
+testRedis(); 
+
 // CORS
 const allowedOrigins = [
   `http://localhost:${VITE_PORT}`,
