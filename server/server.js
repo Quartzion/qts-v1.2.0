@@ -13,6 +13,7 @@ const routes = require('./routes')
 
 const PORT = process.env.PORT || 3000;
 const VITE_PORT = process.env.VITE_PORT;
+const CORS_PROD = process.env.PROD_FRONTEND;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -30,7 +31,7 @@ testRedis();
 // CORS
 const allowedOrigins = [
   `http://localhost:${VITE_PORT}`,
-  'https://quartzion.github.io'
+  `${CORS_PROD}`
 ];
 
 app.use(cors({
