@@ -26,7 +26,7 @@ async function testRedis() {
   console.log("Value from Redis:", val);
 }
 
-testRedis(); 
+testRedis();
 
 // CORS
 const allowedOrigins = [
@@ -36,12 +36,15 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
+    console.log('[CORS] Request origin:', origin);
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.warn('[CORS] Blocked request from:', origin);
       callback(new Error('Not allowed by CORS'));
     }
-  },
+  }
+  ,
   credentials: true
 }));
 
