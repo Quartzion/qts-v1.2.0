@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 const VITE_PORT = process.env.VITE_PORT;
 const CORS_PROD = process.env.PROD_FRONTEND;
 const app = express();
-
+app.set('trust proxy', 1);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
