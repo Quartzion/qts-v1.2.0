@@ -40,11 +40,12 @@ export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fi
   const handleFormSubmit = async (formData) => {
     try {
       const response = await createFollowUpRequest(formData);
-      if (!response.ok) {
-        throw new Error('Sorry, something went wrong with this request.');
-      }
+      const result = await response.json();
 
-      await response.json();
+      if (!response.ok) {
+        console.error(result)
+        throw new Error(result?.message || 'Sorry, something went wrong with this request.');
+      }
       setSuccessMessage(true);
       setShowAlert(false);     
       setCwuFormData({         
