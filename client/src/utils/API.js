@@ -1,22 +1,16 @@
+const isProd = import.meta.env.MODE === 'production';
+const VITE_PORT = `${import.meta.env.VITE_PORT}`;
+
+const API_BASE_URL = isProd
+  ? import.meta.env.VITE_PROD_API_BASE_URL
+  : import.meta.env.VITE_DEV_API_BASE_URL+VITE_PORT;
+
 export const createFollowUpRequest = async (furData) => {
-  const res = await fetch("/api/cwu", {
+  const res = await fetch(`${API_BASE_URL}/api/cwu`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
     },
     body: JSON.stringify(furData),
   });
-
-  const contentType = res.headers.get("content-type");
-
-  if (!res.ok) {
-    const errText = await res.text(); // try to capture the response body, even if HTML
-    throw new Error(`Request failed: ${res.status} - ${errText}`);
-  }
-
-  if (contentType && contentType.includes("application/json")) {
-    return await res.json();
-  } else {
-    return { message: "Success (non-JSON response)" };
-  }
 };
