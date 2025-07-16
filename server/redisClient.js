@@ -1,10 +1,19 @@
 require('dotenv').config();
 const Redis = require('ioredis');
 
-const redis = new Redis({
-  host: process.env.REDIS_HOST || '127.0.0.1',
-  port: process.env.REDIS_PORT || 6379,
-  password: process.env.REDIS_PASSWORD,
+if (!process.env.REDIS_URL) {
+  console.error('💀 REDIS_URL not defined in environment variables');
+  process.exit(1);
+}
+
+const redis = new Redis(process.env.REDIS_URL);
+
+redis.on('connect', () => {
+  console.log('🧱 Connected to Redis');
+});
+
+redis.on('error', (err) => {
+  console.error('💀 Redis connection error:', err);
 });
 
 module.exports = redis;
