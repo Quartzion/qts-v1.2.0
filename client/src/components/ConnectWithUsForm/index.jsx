@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert } from 'react-bootstrap'; // Optional: Bootstrap Alert
+import { Alert } from 'react-bootstrap';
 
 import GeneralForm from '../GeneralForm';
 import { createFollowUpRequest } from '../../utils/API';
@@ -45,7 +45,7 @@ export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fi
         console.error(result)
         throw new Error(result?.message || 'Sorry, something went wrong with this request.');
       }
-      // const result = await response.json();
+      const result = await response.json();
       setSuccessMessage(true);
       setShowAlert(false);     
       setCwuFormData({         

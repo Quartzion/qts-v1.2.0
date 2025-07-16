@@ -6,7 +6,7 @@ const API_BASE_URL = isProd
   : import.meta.env.VITE_DEV_API_BASE_URL+VITE_PORT;
 
 export const createFollowUpRequest = async (furData) => {
-  const res = await fetch(`${API_BASE_URL}/api/cwu`, {
+  return await fetch(`${API_BASE_URL}/api/cwu`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
