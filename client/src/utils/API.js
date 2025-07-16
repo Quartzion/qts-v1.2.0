@@ -1,9 +1,10 @@
-const isProd = import.meta.env.MODE === 'production';
-const VITE_PORT = `${import.meta.env.VITE_PORT}`;
+import { isProd, getApiBaseUrl } from '../utils/env';
 
-const API_BASE_URL = isProd
-  ? import.meta.env.VITE_PROD_API_BASE_URL
-  : import.meta.env.VITE_DEV_API_BASE_URL+VITE_PORT;
+if (isProd()) {
+  console.log('Running in production mode');
+}
+
+const API_BASE_URL = getApiBaseUrl();
 
 export const createFollowUpRequest = async (furData) => {
   return await fetch(`${API_BASE_URL}/api/cwu`, {

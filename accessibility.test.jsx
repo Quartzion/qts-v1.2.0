@@ -14,7 +14,14 @@ import GeneralForm from './client/src/components/GeneralForm';
 import ConnectWithUs from './client/src/components/ConnectWithUs';
 import ConnectWithUsForm from './client/src/components/ConnectWithUsForm';
 
+
 expect.extend(toHaveNoViolations);
+
+jest.mock('./client/src/utils/env', () => ({
+  isProd: () => false,
+  getEnvMode: () => 'test',
+  getApiBaseUrl: () => 'http://localhost:3000',
+}));
 
 // array of component definitions
 const componentsToTest = [
