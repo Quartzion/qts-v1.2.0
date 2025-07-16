@@ -10,6 +10,9 @@ import Header from './client/src/components/Header';
 import Services from './client/src/components/Services';
 import TeamSection from './client/src/components/TeamSection';
 import WelcomeBanner from './client/src/components/WelcomeBanner';
+import GeneralForm from './client/src/components/GeneralForm';
+import ConnectWithUs from './client/src/components/ConnectWithUs';
+import ConnectWithUsForm from './client/src/components/ConnectWithUsForm';
 
 expect.extend(toHaveNoViolations);
 
@@ -22,6 +25,9 @@ const componentsToTest = [
   { name: 'Services', component: () => <Services /> },
   { name: 'TeamSection', component: () => <TeamSection /> },
   { name: 'WelcomeBanner', component: () => <WelcomeBanner /> },
+  { name: 'GeneralForm', component: ()=> <GeneralForm />},
+  { name: 'ConnectWithUs', component: ()=> <ConnectWithUs />},
+  { name: 'ConnectWitUsForm', component: ()=> <ConnectWithUsForm />}
 ];
 
 describe('Accessibility tests (axe-core)', () => {
