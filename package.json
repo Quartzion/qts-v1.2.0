@@ -38,8 +38,6 @@
     "compression": "^1.8.0",
     "dotenv": "^16.5.0",
     "jsonwebtoken": "^9.0.2",
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },
@@ -47,7 +45,7 @@
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.27.1",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^14.0.0",
+    "@testing-library/react": "^14.3.1",
     "babel-jest": "^30.0.2",
     "color-contrast-checker": "^2.1.0",
     "concurrently": "^9.2.0",
@@ -62,6 +60,8 @@
     "jest": "^30.0.3",
     "jest-axe": "^10.0.0",
     "jest-environment-jsdom": "^30.0.2",
-    "pa11y-ci": "^3.1.0"
+    "pa11y-ci": "^3.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }

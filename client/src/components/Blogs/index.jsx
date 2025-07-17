@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useRef } from "react";
+import React, { useState, useRef } from 'react';
 import { FaEye, FaHeart } from "react-icons/fa";
 import ReactDOM from "react-dom";
 import Overlay from "../Overlay";
