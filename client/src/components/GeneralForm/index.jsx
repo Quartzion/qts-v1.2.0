@@ -39,7 +39,7 @@ export default function GeneralForm({
                   value={option.value}
                   checked={formData[field.name] === option.value}
                   onChange={handleChange}
-                  required={field.required && i === 0} // only first is "required"
+                  required={field.required && i === 0}
                 />
               ))}
               </div>

@@ -1,15 +1,24 @@
-const VITE_PORT = `${import.meta.env.VITE_PORT}`;
+const IS_TEST = process.env.NODE_ENV === 'test';
 
-export const getEnvMode = () => {
-  return import.meta.env.MODE || 'development';
+// fallback for Jest
+const testEnv = {
+  VITE_PORT: '3000',
+  VITE_DEV_API_BASE_URL: 'http://localhost:',
+  VITE_PROD_API_BASE_URL: 'https://prod.url',
 };
 
-export const isProd = () => {
-  return getEnvMode() === 'production';
+const getEnv = (key) => {
+  return IS_TEST
+    ? testEnv[key]
+    : import.meta.env[key];
 };
+
+export const getEnvMode = () => getEnv('MODE') || 'development';
+export const isProd = () => getEnvMode() === 'production';
 
 export const getApiBaseUrl = () => {
+  const port = getEnv('VITE_PORT') || '';
   return isProd()
-    ? import.meta.env.VITE_PROD_API_BASE_URL
-    : import.meta.env.VITE_DEV_API_BASE_URL+VITE_PORT;
+    ? getEnv('VITE_PROD_API_BASE_URL')
+    : getEnv('VITE_DEV_API_BASE_URL') + port;
 };

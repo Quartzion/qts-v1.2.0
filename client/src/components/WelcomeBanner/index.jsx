@@ -11,7 +11,7 @@ export default function WelcomeBanner() {
                 />
             </picture>
             <div className="overlay" /> 
-            <section role="banner" className="welcome-banner-content">
+            <section className="welcome-banner-content">
                 <h1>We are Quartzion Technology Solutions Corp.</h1>
                 <p>Empowering businesses with cutting-edge technology and exceptional service.</p>
             </section>

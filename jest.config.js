@@ -1,7 +1,15 @@
+const path = require('path');
+
 module.exports = {
   testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.(js|jsx)$': 'babel-jest',
+    '^.+\\.[jt]sx?$': 'babel-jest',
   },
-  moduleFileExtensions: ['js', 'jsx'],
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom'],
+  transformIgnorePatterns: ['/node_modules/'],
+  moduleNameMapper: {
+    '^react$': path.resolve('./node_modules/react'),
+    '^react-dom$': path.resolve('./node_modules/react-dom'),
+  },
 };
