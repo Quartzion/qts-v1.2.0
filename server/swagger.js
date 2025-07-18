@@ -1,7 +1,8 @@
 require('dotenv').config();
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
-const VITE_PORT = process.env.VITE_PORT
+const VITE_PORT = process.env.VITE_PORT;
+const VITE_QTS_VERSION = process.env.VITE_QTS_VERSION;
 
 // Determine API base URL
 const isProd = process.env.NODE_ENV === 'production';
@@ -17,7 +18,7 @@ const options = {
     openapi: '3.0.0',
     info: {
       title: 'Quartzion API',
-      version: '1.2.0',
+      version: `${VITE_QTS_VERSION}`,
       description: 'API documentation for Quartzion Engineering',
     },
     servers: [

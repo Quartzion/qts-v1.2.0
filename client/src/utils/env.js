@@ -1,4 +1,5 @@
 const IS_TEST = process.env.NODE_ENV === 'test';
+const QTS_VERSION = import.meta.env.VITE_QTS_VERSION;
 
 // fallback for Jest
 const testEnv = {
@@ -22,3 +23,7 @@ export const getApiBaseUrl = () => {
     ? getEnv('VITE_PROD_API_BASE_URL')
     : getEnv('VITE_DEV_API_BASE_URL') + port;
 };
+
+export default function getQtsVersion () {
+return QTS_VERSION
+}
