@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import slugify from 'slugify';
 import { FaEye, FaHeart } from "react-icons/fa";
 import ReactDOM from "react-dom";
@@ -15,7 +15,6 @@ export default function Blogs() {
   const slug = searchParams.get('slug');
   const cardRefs = useRef([]);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const expandedIdx = blogs.findIndex(
     blog => slugify(blog.title, { lower: true, strict: true }) === slug
@@ -30,16 +29,9 @@ export default function Blogs() {
   };
 
   const handleToggle = (index) => {
-    if (expandedIdx === index) {
-      // If already expanded, clicking "Show less" should return to root
-      navigate('/', { replace: false });
-    } else {
-      // Otherwise, navigate to show the overlay
-      const slug = slugify(blogs[index].title, { lower: true, strict: true });
-      navigate(`/blogs?slug=${slug}`, { replace: false });
-    }
+    const slug = slugify(blogs[index].title, { lower: true, strict: true });
+    setSearchParams({ slug });
   };
-
 
   const closeOverlay = () => {
     setSearchParams({});
@@ -63,12 +55,12 @@ export default function Blogs() {
 
   // OPTIONAL: Allow browser back button to close overlay
   useEffect(() => {
-    const currentSlug = new URLSearchParams(location.search).get('slug');
-    if (!currentSlug && expandedIdx !== -1) {
-      closeOverlay();
-    }
-  }, [location, expandedIdx]);
-
+    const unlisten = navigate((location) => {
+      const urlSlug = new URLSearchParams(location.search).get("slug");
+      if (!urlSlug) closeOverlay();
+    });
+    return () => unlisten();
+  }, []);
 
   const renderCard = (blog, idx, isOverlay = false) => (
     <section
@@ -94,7 +86,7 @@ export default function Blogs() {
         </p>
         <div className="blog-card-footer">
           <Link
-            to="#"
+            to={`/blogs?slug=${slugify(blog.title, { lower: true, strict: true })}`}
             onClick={(e) => {
               e.preventDefault();
               handleToggle(idx);
@@ -133,18 +125,12 @@ export default function Blogs() {
         <h3 id="blogs">blogs</h3>
       </header>
       <div className="blogs-content">
-        {blogs.map((blog, idx) => {
-          const isExpanded = expandedIdx === idx;
-          return expandedIdx !== -1 && isExpanded
-            ? (
-              // Hide the background copy of the expanded blog
-              <div key={idx} style={{ visibility: "hidden", height: 0 }} />
-            )
-            : renderCard(blog, idx);
-        })}
+        {blogs.map((blog, idx) =>
+          expandedIdx === idx
+            ? null
+            : renderCard(blog, idx)
+        )}
       </div>
-
-
       {expandedIdx !== -1 &&
         ReactDOM.createPortal(
           <Overlay
