@@ -29,7 +29,7 @@ export default function Page1() {
             "@type": "BlogPosting",
             "headline": "Empowering Non-Profits with Durable Technology: Reducing Overhead & Enhancing Donor Engagement",
             "author": { "@type": "Person", "name": "Peter Smith CEO" },
-            "datePublished": "2025-06-30",
+            "datePublished": "2025-06-30T00:00:00-04:00",
             "url": "https://www.quartzion.com/#blog-0",
             "image": "https://www.quartzion.com/blog_2.webp"
         },
@@ -37,7 +37,7 @@ export default function Page1() {
             "@type": "BlogPosting",
             "headline": "Effective Tech Analysis for Seamless Project Management",
             "author": { "@type": "Person", "name": "Peter Smith CEO" },
-            "datePublished": "2025-06-30",
+            "datePublished": "2025-06-30T00:00:00-04:00",
             "url": "https://www.quartzion.com/#blog-1",
             "image": "https://www.quartzion.com/images/blog_1.webp"
         },
@@ -45,7 +45,7 @@ export default function Page1() {
             "@type": "BlogPosting",
             "headline": "Strengthening Community Through Smart Technology Integration",
             "author": { "@type": "Person", "name": "Peter Smith CEO" },
-            "datePublished": "2025-06-30",
+            "datePublished": "2025-06-30T00:00:00-04:00",
             "url": "https://www.quartzion.com/#blog-2",
             "image": "https://www.quartzion.com/blog_3.webp"
         }
