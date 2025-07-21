@@ -391,6 +391,11 @@
     width: 100%;
     padding: 3% 0;
     text-align: center;
+    
+}
+
+.blog-card-footer a {
+color: #7BB0FE
 }
 
 .blog-card.blurred {
