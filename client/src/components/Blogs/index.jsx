@@ -7,7 +7,7 @@ import { FaEye, FaHeart } from "react-icons/fa";
 import ReactDOM from "react-dom";
 import Overlay from "../Overlay";
 import blogs from '../../utils/blogData';
-import { generateBlogJsonLd } from '../../utils/generateJsonLd';
+// import { generateBlogJsonLd } from '../../utils/generateJsonLd';
 
 export default function Blogs() {
   const [hearts, setHearts] = useState([137, 61, 745]);
@@ -47,20 +47,20 @@ export default function Blogs() {
   };
 
   // Load JSON-LD script dynamically
-  useEffect(() => {
-    if (expandedIdx !== -1) {
-      const blog = blogs[expandedIdx];
-      const jsonLd = generateBlogJsonLd(blog, window.location.origin);
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.innerHTML = JSON.stringify(jsonLd, null, 2);
-      document.head.appendChild(script);
+  // useEffect(() => {
+  //   if (expandedIdx !== -1) {
+  //     const blog = blogs[expandedIdx];
+  //     const jsonLd = generateBlogJsonLd(blog, window.location.origin);
+  //     const script = document.createElement('script');
+  //     script.type = 'application/ld+json';
+  //     script.innerHTML = JSON.stringify(jsonLd, null, 2);
+  //     document.head.appendChild(script);
 
-      return () => {
-        document.head.removeChild(script);
-      };
-    }
-  }, [expandedIdx]);
+  //     return () => {
+  //       document.head.removeChild(script);
+  //     };
+  //   }
+  // }, [expandedIdx]);
 
   // OPTIONAL: Allow browser back button to close overlay
   useEffect(() => {
