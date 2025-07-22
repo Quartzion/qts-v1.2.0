@@ -14,7 +14,8 @@ export const generateBlogJsonLd = (blog, url) => {
     "author": {
       "@type": "Person",
       "name": "Peter Smith",
-      "image": `${url}/pete-ceo-2.webp`
+      "image": `${url}/pete-ceo-2.webp`,
+      "url": `${url}#peter-smith`
     },
     "publisher": {
       "@type": "Organization",

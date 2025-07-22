@@ -51,7 +51,7 @@ export default function TeamSection() {
                 </nav>
             </article>
             <article className="team-members">
-                <section className="team-member">
+                <section id="peter-smith" className="team-member">
                     <div className="team-member-details">
                         <h2>Peter Smith</h2>
                         <h3>CEO & Co-Founder</h3>

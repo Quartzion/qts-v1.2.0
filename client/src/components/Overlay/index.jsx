@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Overlay({ children, onClose, className = "" }) {
     const overlayRef = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -41,6 +43,7 @@ requestAnimationFrame(() => {
             // Escape key closes modal
             if (e.key === "Escape") {
                 onClose();
+                navigate('/');
             }
         };
 

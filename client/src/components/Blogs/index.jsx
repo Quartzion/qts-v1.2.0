@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from 'react-bootstrap';
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import slugify from 'slugify';
@@ -69,7 +70,6 @@ export default function Blogs() {
     }
   }, [location, expandedIdx]);
 
-
   const renderCard = (blog, idx, isOverlay = false) => (
     <section
       aria-labelledby={`blog-${idx}`}
@@ -93,15 +93,16 @@ export default function Blogs() {
             : blog.content.slice(0, 250) + (blog.content.length > 250 ? "..." : "")}
         </p>
         <div className="blog-card-footer">
-          <Link
+          <Button
             to="#"
             onClick={(e) => {
               e.preventDefault();
               handleToggle(idx);
             }}
+            aria-label={`Read more about ${blog.title}`}
           >
-            {expandedIdx === idx ? "Show less" : "Read more"}
-          </Link>
+            {expandedIdx === idx ? "Show less" : `Click to expand`}
+          </Button>
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
               <FaEye /> {views[idx]}
