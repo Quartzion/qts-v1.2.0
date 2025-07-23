@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { Alert } from 'react-bootstrap';
 import GeneralForm from '../GeneralForm';
 import { createFollowUpRequest } from '../../utils/API';
 
@@ -28,6 +28,8 @@ export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fi
     notes: ''
   });
 
+  const [showAlert, setShowAlert] = useState(false);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCwuFormData({ ...cwuFormdata, [name]: value });
@@ -42,7 +44,8 @@ export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fi
         throw new Error(result?.message || 'Sorry, something went wrong with this request.');
       }
       const result = await response.json();
-      onSuccess?.();    
+      onSuccess?.();   
+      setShowAlert(false);  
       setCwuFormData({         
         name: '',
         organization: '',
@@ -56,6 +59,7 @@ export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fi
       });
     } catch (err) {
       console.error(err);
+      setShowAlert(true);
       onError?.(err.message);
     }
   };
@@ -69,6 +73,12 @@ export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fi
         onSubmit={handleFormSubmit}
       />
       <br/>
+      {/*Error Alert */}
+      {showAlert && (
+        <Alert variant="danger">
+          Sorry, something went wrong. Please try again later.
+        </Alert>
+      )}
     </article>
   );
 }
