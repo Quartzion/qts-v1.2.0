@@ -1,6 +1,6 @@
 {
   "name": "qts",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,7 @@
   "author": "Peter Smith for Quartzion Technology Solutions Corp.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Quartzion/qts_1_1_0/issues"
+    "url": "https://github.com/Quartzion/qts-v1.2.0/issues"
   },
   "homepage": "https://quartzion.github.io/qts_1_1_0/",
   "dependencies": {

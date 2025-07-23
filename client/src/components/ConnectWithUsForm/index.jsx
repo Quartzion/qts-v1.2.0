@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Alert } from 'react-bootstrap';
 
 import GeneralForm from '../GeneralForm';
 import { createFollowUpRequest } from '../../utils/API';
@@ -16,7 +15,7 @@ const connectWithUsFormFields = [
   { label: "Additional Notes for The engineers", name: "notes", type: "textarea", required: false, autoComplete: "off" },
 ];
 
-export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fields" }) {
+export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fields", onSuccess, onError }) {
   const [cwuFormdata, setCwuFormData] = useState({
     name: '',
     organization: '',
@@ -28,9 +27,6 @@ export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fi
     priority: '',
     notes: ''
   });
-
-  const [showAlert, setShowAlert] = useState(false);
-  const [successMessage, setSuccessMessage] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -46,8 +42,7 @@ export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fi
         throw new Error(result?.message || 'Sorry, something went wrong with this request.');
       }
       const result = await response.json();
-      setSuccessMessage(true);
-      setShowAlert(false);     
+      onSuccess?.();    
       setCwuFormData({         
         name: '',
         organization: '',
@@ -61,8 +56,7 @@ export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fi
       });
     } catch (err) {
       console.error(err);
-      setSuccessMessage(false);
-      setShowAlert(true);
+      onError?.(err.message);
     }
   };
 
@@ -75,20 +69,6 @@ export default function ConnectWithUsForm({ formClass = "connect-with-us-form-fi
         onSubmit={handleFormSubmit}
       />
       <br/>
-            {/*Success Alert */}
-      {successMessage && (
-        <Alert variant="success">
-          Your request has been successfully submitted to Quartzion's Engineering Team!
-        </Alert>
-      )}
-
-      {/*Error Alert */}
-      {showAlert && (
-        <Alert variant="danger">
-          Sorry, something went wrong. Please try again later.
-        </Alert>
-      )}
-
     </article>
   );
 }
