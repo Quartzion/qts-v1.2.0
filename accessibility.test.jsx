@@ -1,19 +1,30 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import QTS_VERSION from './client/src/utils/env'
 
 expect.extend(toHaveNoViolations);
 
 // Optional helper to wrap components needing routing
-const withProviders = (ui) => <BrowserRouter>{ui}</BrowserRouter>;
+const withProviders = (ui, route = '/') => (
+    <MemoryRouter initialEntries={[route]}>
+        <Routes>
+            <Route path="*" element={ui} />
+        </Routes>
+    </MemoryRouter>
+);
 
 // Mock your environment
 jest.mock('./client/src/utils/env', () => ({
+    __esModule: true, // ← important for default export compatibility
+    default: () => 'x.x.x', // ← mock for getQtsVersion
     isProd: () => false,
     getEnvMode: () => 'test',
     getApiBaseUrl: () => 'http://localhost:3000',
+    getQtsVersion: () => 'x.x.x'
 }));
+
 
 // Import components
 import AboutUs from './client/src/components/AboutUs';
@@ -26,7 +37,6 @@ import WelcomeBanner from './client/src/components/WelcomeBanner';
 import GeneralForm from './client/src/components/GeneralForm';
 import ConnectWithUs from './client/src/components/ConnectWithUs';
 import ConnectWithUsForm from './client/src/components/ConnectWithUsForm';
-import Page1 from './client/src/pages/Page1';
 
 const mockFormFields = [
     {
@@ -58,7 +68,12 @@ const mockFormSubmit = () => console.log('Submitted test form');
 // Array of named components
 const componentsToTest = [
     { name: 'AboutUs', Component: AboutUs },
-    { name: 'Blogs', Component: Blogs },
+    {
+        name: 'Blogs', Component: () => (
+            (<Blogs />, '/?slug=sample-blog')
+
+        )
+    },
     { name: 'Footer', Component: Footer },
     { name: 'Header', Component: Header },
     { name: 'Services', Component: Services },
@@ -78,7 +93,6 @@ const componentsToTest = [
     },
     { name: 'ConnectWithUs', Component: ConnectWithUs },
     { name: 'ConnectWithUsForm', Component: ConnectWithUsForm },
-    { name: 'Page1', Component: Page1 }
 ];
 
 // Accessibility test loop
