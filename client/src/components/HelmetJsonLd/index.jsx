@@ -46,7 +46,7 @@ export default function HelmetJsonLd() {
                 },
                 "inLanguage": "en-US",
                 "keywords": "technology, nonprofit, innovation, Quartzion, community, development, 501c3",
-                "datePublished": blog.date || "2025-07-01",
+                "datePublished": blog.date || "2025-07-01T14:00:00-04:00",
                 "url": `${baseUrl}/blogs?slug=${slugify(blog.title, { lower: true, strict: true })}`,
                 "image": `${baseUrl}${blog.img.replace(/^\./, '')}`,
                 "wordCount": blog.content.split(/\s+/).length
