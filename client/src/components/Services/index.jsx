@@ -20,7 +20,7 @@ export default function Services() {
                     </picture>
                     <div className="service-card-content">
                     <h2>Technical Analysis</h2>
-                    <p>Submit your followup request below to learn more</p>
+                    <p>Submit your follow-up request below to learn more</p>
                     </div>
                 </article>
                 <article className="service-card">
@@ -35,7 +35,7 @@ export default function Services() {
                     </picture>
                     <div className="service-card-content">
                     <h2>Troubleshooting Session</h2>
-                    <p>Submit your followup request below to learn more</p>
+                    <p>Submit your follow-up request below to learn more</p>
                     </div>
                 </article>
                 <article className="service-card">
@@ -50,7 +50,7 @@ export default function Services() {
                     </picture>
                     <div className="service-card-content">
                         <h2>Solution Development</h2>
-                        <p>Submit your followup request below to learn more</p>
+                        <p>Submit your follow-up request below to learn more</p>
                     </div>
                 </article>
             </section>

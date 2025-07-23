@@ -46,7 +46,7 @@ export default function ConnectWithUs() {
                     aria-expanded={expanded}
                     aria-controls="connect-with-us-form"
                 >
-                    {expanded ? "Hide follow up request form" : "Click here to submit your follow up request!"}
+                    {expanded ? "Hide follow-up request form" : "Click here to submit your follow-up request!"}
                 </Button>
                 {successMessage && (
                     <Alert variant="success" className="mt-3">
