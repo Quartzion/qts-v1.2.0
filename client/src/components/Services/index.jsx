@@ -20,7 +20,7 @@ export default function Services() {
                     </picture>
                     <div className="service-card-content">
                     <h2>Technical Analysis</h2>
-                    <p>Starting at $150 per session</p>
+                    <p>Submit your followup request below to learn more</p>
                     </div>
                 </article>
                 <article className="service-card">
@@ -35,7 +35,7 @@ export default function Services() {
                     </picture>
                     <div className="service-card-content">
                     <h2>Troubleshooting Session</h2>
-                    <p>Starting at $200 per session</p>
+                    <p>Submit your followup request below to learn more</p>
                     </div>
                 </article>
                 <article className="service-card">
@@ -50,7 +50,7 @@ export default function Services() {
                     </picture>
                     <div className="service-card-content">
                         <h2>Solution Development</h2>
-                        <p>Starting at $500 per dieum</p>
+                        <p>Submit your followup request below to learn more</p>
                     </div>
                 </article>
             </section>
